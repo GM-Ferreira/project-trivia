@@ -35,6 +35,11 @@ class Login extends Component {
     });
   };
 
+  clickMoveToSettings = () => {
+    const { history } = this.props;
+    history.push('/settings');
+  };
+
   render() {
     const { nome, email, disabled } = this.state;
 
@@ -83,6 +88,14 @@ class Login extends Component {
             onClick={ this.handleClick }
           >
             Play
+          </button>
+
+          <button
+            type="button"
+            data-testid="btn-settings"
+            onClick={ this.clickMoveToSettings }
+          >
+            Settings
           </button>
         </form>
       </div>
