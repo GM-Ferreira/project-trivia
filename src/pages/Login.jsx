@@ -1,12 +1,21 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
+import PropTypes from 'prop-types';
 import logo from '../trivia.png';
 import '../App.css';
+import { tokenRequest } from '../redux/actions';
 
 class Login extends Component {
   state = {
     nome: '',
     email: '',
     disabled: true,
+  };
+
+  handleClick = () => {
+    const { dispatch, history } = this.props;
+    dispatch(tokenRequest());
+    history.push('/game');
   };
 
   handleChange = ({ target: { name, value } }) => {
@@ -28,6 +37,7 @@ class Login extends Component {
 
   render() {
     const { nome, email, disabled } = this.state;
+
     return (
       <div className="App">
         <header className="App-header">
@@ -70,6 +80,7 @@ class Login extends Component {
             type="button"
             data-testid="btn-play"
             disabled={ disabled }
+            onClick={ this.handleClick }
           >
             Play
           </button>
@@ -79,4 +90,8 @@ class Login extends Component {
   }
 }
 
-export default Login;
+Login.propTypes = {
+  dispatch: PropTypes.func,
+}.isRequired;
+
+export default connect()(Login);
