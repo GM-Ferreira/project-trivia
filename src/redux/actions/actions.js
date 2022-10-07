@@ -1,2 +1,3 @@
 export const LOGIN = 'LOGIN';
-export const eis = [];
+export const REQUEST_QUESTION_SUCCESS = 'REQUEST_QUESTION_SUCCESS';
+export const REQUEST_QUESTION_PROCESS = 'REQUEST_QUESTION_PROCESS';
