@@ -1,0 +1,82 @@
+import React, { Component } from 'react';
+import logo from '../trivia.png';
+import '../App.css';
+
+class Login extends Component {
+  state = {
+    nome: '',
+    email: '',
+    disabled: true,
+  };
+
+  handleChange = ({ target: { name, value } }) => {
+    this.setState({
+      [name]: value,
+    }, () => {
+      const { nome, email } = this.state;
+      if (nome.length !== 0 && email.length !== 0) {
+        this.setState({
+          disabled: false,
+        });
+      } else {
+        this.setState({
+          disabled: true,
+        });
+      }
+    });
+  };
+
+  render() {
+    const { nome, email, disabled } = this.state;
+    return (
+      <div className="App">
+        <header className="App-header">
+          <img src={ logo } className="App-logo" alt="logo" />
+          <p>SUA VEZ</p>
+        </header>
+        <div>
+          <h2>
+            Login
+          </h2>
+        </div>
+        <form>
+          <label htmlFor="nome">
+            Nome
+            <input
+              type="text"
+              id="nome"
+              data-testid="input-player-name"
+              onChange={ this.handleChange }
+              name="nome"
+              value={ nome }
+              placeholder="seu nome aqui"
+            />
+          </label>
+
+          <label htmlFor="email">
+            Email
+            <input
+              type="email"
+              id="email"
+              data-testid="input-gravatar-email"
+              onChange={ this.handleChange }
+              name="email"
+              value={ email }
+              placeholder="seuemail@email.com"
+            />
+          </label>
+
+          <button
+            type="button"
+            data-testid="btn-play"
+            disabled={ disabled }
+          >
+            Play
+          </button>
+        </form>
+      </div>
+    );
+  }
+}
+
+export default Login;
