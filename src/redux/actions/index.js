@@ -1,4 +1,5 @@
-// import { LOGIN } from './actions';
+import md5 from 'crypto-js/md5';
+import { LOGIN } from './actions';
 
 export const tokenRequest = () => async () => {
   try {
@@ -12,4 +13,15 @@ export const tokenRequest = () => async () => {
   }
 };
 
-export const ter = () => {};
+export const sendPicture = (foto, name) => ({ type: LOGIN, payload: { foto, name } });
+
+export const getEmail = (email, name) => async (dispatch) => {
+  try {
+    const endPoint = `https://www.gravatar.com/avatar/${md5(email).toString()}`;
+    const request = await fetch(endPoint);
+    dispatch(sendPicture(endPoint, name));
+    console.log(request);
+  } catch (e) {
+    console.log(e);
+  }
+};

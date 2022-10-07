@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import logo from '../trivia.png';
 import '../App.css';
-import { tokenRequest } from '../redux/actions';
+import { getEmail, tokenRequest } from '../redux/actions';
 
 class Login extends Component {
   state = {
@@ -13,7 +13,9 @@ class Login extends Component {
   };
 
   handleClick = () => {
+    const { email, nome } = this.state;
     const { dispatch, history } = this.props;
+    dispatch(getEmail(email, nome));
     dispatch(tokenRequest());
     history.push('/game');
   };
