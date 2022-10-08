@@ -26,9 +26,8 @@ const questionReducer = (state = INITIAL_STATE, action) => {
       questions: action.list.map((questionMap) => ({
         question: questionMap.question,
         category: questionMap.category,
-        answers: [...questionMap.incorrect_answers, questionMap.correct_answer],
-        // adicionar chaves com numero do indice
-        // e identificador de resposta correta
+        answers: { ...questionMap.incorrect_answers,
+          'correct-answer': questionMap.correct_answer },
       })),
       isLoading: false,
     };

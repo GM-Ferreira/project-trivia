@@ -4,6 +4,7 @@ import PropTypes from 'prop-types';
 
 class Game extends Component {
   render() {
+    const minValu = -1;
     const { loading, questions } = this.props;
     return (
       <div>
@@ -21,15 +22,17 @@ class Game extends Component {
               >
                 {questions[0].question}
               </p>
-              {questions[0].answers.map((answer) => (
-                <button
-                  key={ answer }
-                  type="button"
-                  data-testid
-                >
-                  {answer}
-                </button>
-              ))}
+              <div data-testid="answer-options">
+                {Object.keys(questions[0].answers).map((key) => (
+                  <button
+                    key={ key }
+                    type="button"
+                    data-testid={ key }
+                  >
+                    {questions[0].answers[key]}
+                  </button>
+                )).sort((a, b) => (a.props.children < b.props.children ? minValu : true))}
+              </div>
             </div>
           )}
       </div>

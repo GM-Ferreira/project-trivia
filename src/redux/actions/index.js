@@ -10,12 +10,16 @@ export const questionIsLoading = () => ({
 });
 
 export const questionRequest = (token) => async (dispatch) => {
-  const endpoint = `https://opentdb.com/api.php?amount=5&token=${token}`;
-  const request = await fetch(endpoint);
-  const response = await request.json();
-  const list = response.results;
-  console.log(list);
-  dispatch(questionList(list));
+  try {
+    const endpoint = `https://opentdb.com/api.php?amount=5&token=${token}`;
+    const request = await fetch(endpoint);
+    const response = await request.json();
+    const list = response.results;
+    console.log(list);
+    dispatch(questionList(list));
+  } catch (e) {
+    console.log(e);
+  }
 };
 
 export const tokenRequest = () => async (dispatch) => {
@@ -26,10 +30,7 @@ export const tokenRequest = () => async (dispatch) => {
     localStorage.setItem('token', token);
     dispatch(questionRequest(token));
     dispatch(questionIsLoading());
-    console.log(response);
   } catch (e) {
     console.log(e);
   }
 };
-
-export const ter = () => {};
