@@ -1,13 +1,38 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
+import { Redirect } from 'react-router-dom';
 
 class Game extends Component {
+  handleQuestion = () => {
+    const minValue = 0.5;
+    const { questions } = this.props;
+    const qstObj = questions[0].incorrect_answers.map((e, i) => (
+      {
+        [`wrong-answer${i}`]: e,
+      }
+    ));
+    const qstObjCorrect = { 'correct-answer': questions[0].correct_answer };
+    const finalObjt = [...qstObj, qstObjCorrect];
+    const shuffledNumbers = finalObjt.sort(() => Math.random() - minValue);
+    console.log(shuffledNumbers);
+    return (
+      shuffledNumbers.map((element) => (
+        <button
+          type="button"
+          key={ Object.entries(element)[0][1] }
+          data-testid={ Object.entries(element)[0][0] }
+        >
+          {Object.entries(element)[0][1]}
+        </button>
+      )));
+  };
+
   render() {
-    const minValu = -1;
-    const { loading, questions } = this.props;
+    const { loading, questions, isValid } = this.props;
     return (
       <div>
+        { !isValid && <Redirect to="/" /> }
         <p>Game</p>
         {loading ? (<p>Carregando...</p>)
           : (
@@ -23,15 +48,7 @@ class Game extends Component {
                 {questions[0].question}
               </p>
               <div data-testid="answer-options">
-                {Object.keys(questions[0].answers).map((key) => (
-                  <button
-                    key={ key }
-                    type="button"
-                    data-testid={ key }
-                  >
-                    {questions[0].answers[key]}
-                  </button>
-                )).sort((a, b) => (a.props.children < b.props.children ? minValu : true))}
+                {this.handleQuestion()}
               </div>
             </div>
           )}
@@ -43,6 +60,7 @@ class Game extends Component {
 const mapStateToProps = (state) => ({
   loading: state.questionReducer.isLoading,
   questions: state.questionReducer.questions,
+  isValid: state.questionReducer.isValid,
 });
 
 Game.propTypes = {
