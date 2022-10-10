@@ -1,7 +1,10 @@
+import md5 from 'crypto-js/md5';
+
 import {
   REQUEST_QUESTION_SUCCESS,
   REQUEST_QUESTION_PROCESS,
-  REQUEST_QUESTION_FAIL } from './actions';
+  REQUEST_QUESTION_FAIL,
+  LOGIN} from './actions';
 
 export const questionList = (list) => ({
   type: REQUEST_QUESTION_SUCCESS,
@@ -46,5 +49,18 @@ export const tokenRequest = () => async (dispatch) => {
     dispatch(questionIsLoading());
   } catch (e) {
     console.log(e);
+  }
+};
+
+export const sendPicture = (foto, name) => ({ type: LOGIN, payload: { foto, name } });
+
+export const getEmail = (email, name) => async (dispatch) => {
+  try {
+    const endPoint = `https://www.gravatar.com/avatar/${md5(email).toString()}`;
+    const request = await fetch(endPoint);
+    dispatch(sendPicture(endPoint, name));
+    console.log(request);
+  } catch (error) {
+    console.log(error);
   }
 };
