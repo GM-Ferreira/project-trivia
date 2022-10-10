@@ -4,7 +4,6 @@ import PropTypes from 'prop-types';
 import { Redirect } from 'react-router-dom';
 import Header from '../components/Header';
 
-
 class Game extends Component {
   handleQuestion = () => {
     const minValue = 0.5;
@@ -35,26 +34,26 @@ class Game extends Component {
     return (
       <div>
         <Header />
-          { !isValid && <Redirect to="/" /> }
-          <p>Game</p>
-          {loading ? (<p>Carregando...</p>)
-            : (
-              <div>
-                <p
-                  data-testid="question-category"
-                >
-                  {questions[0].category}
-                </p>
-                <p
-                  data-testid="question-text"
-                >
-                  {questions[0].question}
-                </p>
-                <div data-testid="answer-options">
-                  {this.handleQuestion()}
-                </div>
+        { !isValid && <Redirect to="/" /> }
+        <p>Game</p>
+        {loading ? (<p>Carregando...</p>)
+          : (
+            <div>
+              <p
+                data-testid="question-category"
+              >
+                {questions[0].category}
+              </p>
+              <p
+                data-testid="question-text"
+              >
+                {questions[0].question}
+              </p>
+              <div data-testid="answer-options">
+                {this.handleQuestion()}
               </div>
-            )}
+            </div>
+          )}
       </div>
     );
   }

@@ -4,7 +4,7 @@ import {
   REQUEST_QUESTION_SUCCESS,
   REQUEST_QUESTION_PROCESS,
   REQUEST_QUESTION_FAIL,
-  LOGIN} from './actions';
+  LOGIN } from './actions';
 
 export const questionList = (list) => ({
   type: REQUEST_QUESTION_SUCCESS,
