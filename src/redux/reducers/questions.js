@@ -11,6 +11,7 @@ const INITIAL_STATE = {
       type: '',
       difficulty: '',
       answers: {},
+      disable: false,
     },
   },
   isLoading: true,
