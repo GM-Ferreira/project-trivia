@@ -1,6 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
+import { disableButtons } from '../redux/actions';
 
 class Timer extends React.Component {
   state = {

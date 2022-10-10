@@ -1,10 +1,25 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Redirect } from 'react-router-dom';
+import PropTypes from 'prop-types';
 import Header from '../components/Header';
 import Timer from '../components/Timer';
 
 class Game extends Component {
+  changeColor = () => {
+    const wrong = '3px solid red';
+    if (document.querySelector('[name="wrong-answer1"]')) {
+      const btn2 = document.querySelector('[name="wrong-answer1"]');
+      const btn3 = document.querySelector('[name="wrong-answer2"]');
+      btn2.style.border = wrong;
+      btn3.style.border = wrong;
+    }
+    const btn1 = document.querySelector('[name="wrong-answer0"]');
+    const btn4 = document.querySelector('[name="correct-answer"]');
+    btn1.style.border = wrong;
+    btn4.style.border = '3px solid rgb(6, 240, 15)';
+  };
+
   handleQuestion = () => {
     const minValue = 0.5;
     const { questions, disable } = this.props;
@@ -24,6 +39,8 @@ class Game extends Component {
           key={ Object.entries(element)[0][1] }
           data-testid={ Object.entries(element)[0][0] }
           disabled={ disable }
+          onClick={ () => this.changeColor() }
+          name={ Object.entries(element)[0][0] }
         >
           {Object.entries(element)[0][1]}
         </button>

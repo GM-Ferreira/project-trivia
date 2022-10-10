@@ -4,7 +4,7 @@ import {
   REQUEST_QUESTION_SUCCESS,
   REQUEST_QUESTION_PROCESS,
   REQUEST_QUESTION_FAIL,
-  LOGIN } from './actions';
+  LOGIN, TIME_OUT } from './actions';
 
 export const questionList = (list) => ({
   type: REQUEST_QUESTION_SUCCESS,
@@ -65,4 +65,4 @@ export const getEmail = (email, name) => async (dispatch) => {
   }
 };
 
-// da nada
+export const disableButtons = () => ({ type: TIME_OUT });
