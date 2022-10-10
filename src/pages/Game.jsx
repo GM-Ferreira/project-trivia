@@ -1,8 +1,9 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import PropTypes from 'prop-types';
 import { Redirect } from 'react-router-dom';
+import PropTypes from 'prop-types';
 import Header from '../components/Header';
+import Timer from '../components/Timer';
 
 class Game extends Component {
   changeColor = () => {
@@ -21,7 +22,7 @@ class Game extends Component {
 
   handleQuestion = () => {
     const minValue = 0.5;
-    const { questions } = this.props;
+    const { questions, disable } = this.props;
     const qstObj = questions[0].incorrect_answers.map((e, i) => (
       {
         [`wrong-answer${i}`]: e,
@@ -37,6 +38,7 @@ class Game extends Component {
           type="button"
           key={ Object.entries(element)[0][1] }
           data-testid={ Object.entries(element)[0][0] }
+          disabled={ disable }
           onClick={ () => this.changeColor() }
           name={ Object.entries(element)[0][0] }
         >
@@ -47,8 +49,10 @@ class Game extends Component {
 
   render() {
     const { loading, questions, isValid } = this.props;
+
     return (
       <div>
+        <Timer />
         <Header />
         { !isValid && <Redirect to="/" /> }
         <p>Game</p>
@@ -79,6 +83,7 @@ const mapStateToProps = (state) => ({
   loading: state.questionReducer.isLoading,
   questions: state.questionReducer.questions,
   isValid: state.questionReducer.isValid,
+  disable: state.questionReducer.disable,
 });
 
 Game.propTypes = {

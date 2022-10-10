@@ -1,7 +1,7 @@
 import {
   REQUEST_QUESTION_SUCCESS,
   REQUEST_QUESTION_PROCESS,
-  REQUEST_QUESTION_FAIL } from '../actions/actions';
+  REQUEST_QUESTION_FAIL, TIME_OUT } from '../actions/actions';
 
 const INITIAL_STATE = {
   questions: {
@@ -11,6 +11,7 @@ const INITIAL_STATE = {
       type: '',
       difficulty: '',
       answers: {},
+      disable: false,
     },
   },
   isLoading: true,
@@ -32,6 +33,11 @@ const questionReducer = (state = INITIAL_STATE, action) => {
       ...state,
       questions: action.list,
       isLoading: false,
+    };
+  case TIME_OUT:
+    return {
+      ...state,
+      disable: !state.disable,
     };
   default:
     return state;
