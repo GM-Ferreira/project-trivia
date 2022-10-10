@@ -4,6 +4,7 @@ import { Redirect } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import Header from '../components/Header';
 import Timer from '../components/Timer';
+import { updateScoreBoard } from '../redux/actions';
 
 class Game extends Component {
   changeColor = () => {
@@ -18,6 +19,19 @@ class Game extends Component {
     const btn4 = document.querySelector('[name="correct-answer"]');
     btn1.style.border = wrong;
     btn4.style.border = '3px solid rgb(6, 240, 15)';
+  };
+
+  handleClick = () => {
+    this.changeColor();
+    const { dispatch } = this.props;
+    const timer = document.querySelector('[name="temporizador"]');
+    console.log(Object.entries(timer)[1][1].value);
+    const clickedTime = Object.entries(timer)[1][1].value;
+    dispatch(updateScoreBoard(Number(clickedTime)));
+    // if (target.name === 'correct-answer') {
+    //   dispatch(updateScoreBoard(10));
+    // }
+    //
   };
 
   handleQuestion = () => {
@@ -39,7 +53,7 @@ class Game extends Component {
           key={ Object.entries(element)[0][1] }
           data-testid={ Object.entries(element)[0][0] }
           disabled={ disable }
-          onClick={ () => this.changeColor() }
+          onClick={ (e) => this.handleClick(e) }
           name={ Object.entries(element)[0][0] }
         >
           {Object.entries(element)[0][1]}

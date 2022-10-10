@@ -4,7 +4,7 @@ import {
   REQUEST_QUESTION_SUCCESS,
   REQUEST_QUESTION_PROCESS,
   REQUEST_QUESTION_FAIL,
-  LOGIN, TIME_OUT } from './actions';
+  LOGIN, TIME_OUT, SELECTED_QUESTION } from './actions';
 
 export const questionList = (list) => ({
   type: REQUEST_QUESTION_SUCCESS,
@@ -66,3 +66,5 @@ export const getEmail = (email, name) => async (dispatch) => {
 };
 
 export const disableButtons = () => ({ type: TIME_OUT });
+
+export const updateScoreBoard = (payload) => ({ type: SELECTED_QUESTION, payload });

@@ -23,7 +23,7 @@ class Timer extends React.Component {
         }), () => {
           const { timer } = this.state;
           if (timer === 0) {
-            dispatch(disableButtons());
+            dispatch(disableButtons(timer));
             clearInterval(idInterval);
           }
         });
@@ -33,9 +33,11 @@ class Timer extends React.Component {
 
   render() {
     const { timer } = this.state;
-    console.log(timer);
     return (
-      <p>
+      <p
+        value={ timer }
+        name="temporizador"
+      >
         { timer }
       </p>
     );
