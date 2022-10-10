@@ -64,3 +64,5 @@ export const getEmail = (email, name) => async (dispatch) => {
     console.log(error);
   }
 };
+
+// da nada
