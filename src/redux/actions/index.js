@@ -21,7 +21,7 @@ export const getEmail = (email, name) => async (dispatch) => {
     const request = await fetch(endPoint);
     dispatch(sendPicture(endPoint, name));
     console.log(request);
-  } catch (e) {
-    console.log(e);
+  } catch (error) {
+    console.log(error);
   }
 };
