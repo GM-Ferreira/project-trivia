@@ -1,28 +1,20 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import PropTypes from 'prop-types';
+import Header from '../components/Header';
+import FeedBackResult from '../components/FeedBackResult';
 
 class Feedback extends Component {
   render() {
-    const { assertions } = this.props;
-    const correctAnswers = 3;
     return (
-      <div data-testid="feedback-text">
-        Feedbacks
-        <p data-testid="feedback-text">
-          { assertions >= correctAnswers ? 'Well Done!' : 'Could be better...' }
-        </p>
-      </div>
+      <>
+        <Header />
+        <div data-testid="feedback-text">
+          Feedbacks
+        </div>
+        <FeedBackResult />
+      </>
     );
   }
 }
 
-const mapStateToProps = (state) => ({
-  assertions: state.player.assertions,
-});
-
-Feedback.propTypes = {
-  assertions: PropTypes.number,
-}.isRequired;
-
-export default connect(mapStateToProps)(Feedback);
+export default connect()(Feedback);
