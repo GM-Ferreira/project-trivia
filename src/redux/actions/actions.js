@@ -7,3 +7,4 @@ export const SELECTED_QUESTION = 'SELECTED_QUESTION';
 export const STOP_TIMER = 'STOP_TIMER';
 export const COUNT = 'COUNT';
 export const UPDATE_SCORE = 'UPDATE_SCORE';
+export const UPDATE_ASSERTIONS = 'UPDATE_ASSERTIONS;';
