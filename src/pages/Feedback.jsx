@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import PropTypes from 'prop-types';
 import Header from '../components/Header';
 import FeedBackResult from '../components/FeedBackResult';
 
@@ -13,13 +14,13 @@ class Feedback extends Component {
 
   render() {
     return (
-     <div className="feedback" data-testid="feedback-text">
-       <Header />
+      <div className="feedback" data-testid="feedback-text">
+        <Header />
         <h1>Feedbacks</h1>
         <p data-testid="feedback-text">
           { assertions >= correctAnswers ? 'Well Done!' : 'Could be better...' }
         </p>
-         <FeedBackResult />
+        <FeedBackResult />
         <button
           type="button"
           data-testid="btn-play-again"
@@ -33,3 +34,7 @@ class Feedback extends Component {
 }
 
 export default connect()(Feedback);
+
+Feedback.propTypes = {
+  history: PropTypes.func,
+}.isRequired;
