@@ -1,0 +1,21 @@
+.feedback h1 {
+  text-align: center;
+}
+
+.feedback button {
+    position:absolute; 
+    width: 350px;
+    text-align: absolute;
+    left: 37%;
+    top: 25%;
+    padding: 15px 20px;
+    border: 1px solid #eee;
+    border-radius: 6px;
+    background-color: #FCC302;
+    font-size: 18px;
+}
+
+.feedback p {
+  font-size: 18px;
+  text-align: center;
+}
