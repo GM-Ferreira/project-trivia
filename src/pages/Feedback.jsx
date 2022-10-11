@@ -35,6 +35,9 @@ const mapStateToProps = (state) => ({
 });
 
 Feedback.propTypes = {
+  history: PropTypes.shape({
+    push: PropTypes.func.isRequired,
+  }).isRequired,
   assertions: PropTypes.number,
 }.isRequired;
 
