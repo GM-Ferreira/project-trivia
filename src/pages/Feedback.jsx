@@ -3,6 +3,11 @@ import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 
 class Feedback extends Component {
+  moveToRanking = () => {
+    const { history } = this.props;
+    history.push('/ranking');
+  };
+
   render() {
     const { assertions } = this.props;
     const correctAnswers = 3;
@@ -12,6 +17,14 @@ class Feedback extends Component {
         <p data-testid="feedback-text">
           { assertions >= correctAnswers ? 'Well Done!' : 'Could be better...' }
         </p>
+
+        <button
+          type="button"
+          data-testid="btn-ranking"
+          onClick={ this.moveToRanking }
+        >
+          Ranking
+        </button>
       </div>
     );
   }
