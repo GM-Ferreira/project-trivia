@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import PropTypes from 'prop-types';
+import Header from '../components/Header';
+import FeedBackResult from '../components/FeedBackResult';
 
 import './Feedback.css';
 
@@ -11,14 +12,14 @@ class Feedback extends Component {
   };
 
   render() {
-    const { assertions } = this.props;
-    const correctAnswers = 3;
     return (
-      <div className="feedback" data-testid="feedback-text">
+     <div className="feedback" data-testid="feedback-text">
+       <Header />
         <h1>Feedbacks</h1>
         <p data-testid="feedback-text">
           { assertions >= correctAnswers ? 'Well Done!' : 'Could be better...' }
         </p>
+         <FeedBackResult />
         <button
           type="button"
           data-testid="btn-play-again"
@@ -31,12 +32,4 @@ class Feedback extends Component {
   }
 }
 
-const mapStateToProps = (state) => ({
-  assertions: state.player.assertions,
-});
-
-Feedback.propTypes = {
-  assertions: PropTypes.number,
-}.isRequired;
-
-export default connect(mapStateToProps)(Feedback);
+export default connect()(Feedback);
