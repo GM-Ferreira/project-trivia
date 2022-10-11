@@ -17,10 +17,9 @@ class Feedback extends Component {
       <div className="feedback" data-testid="feedback-text">
         <Header />
         <h1>Feedbacks</h1>
-        <p data-testid="feedback-text">
-          { assertions >= correctAnswers ? 'Well Done!' : 'Could be better...' }
-        </p>
-        <FeedBackResult />
+        <div>
+          <FeedBackResult />
+        </div>
         <button
           type="button"
           data-testid="btn-play-again"
