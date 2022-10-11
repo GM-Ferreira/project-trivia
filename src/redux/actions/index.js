@@ -5,7 +5,8 @@ import {
   REQUEST_QUESTION_PROCESS,
   REQUEST_QUESTION_FAIL,
   LOGIN, TIME_OUT, SELECTED_QUESTION, COUNT,
-  STOP_TIMER, UPDATE_SCORE } from './actions';
+  STOP_TIMER, UPDATE_SCORE,
+  UPDATE_ASSERTIONS } from './actions';
 
 export const questionList = (list) => ({
   type: REQUEST_QUESTION_SUCCESS,
@@ -71,6 +72,8 @@ export const justPassScore = (payload) => ({ type: UPDATE_SCORE, payload });
 
 export const stopTimer = (payload) => ({ type: STOP_TIMER, payload });
 
+export const addAssertions = () => ({ type: UPDATE_ASSERTIONS });
+
 export const uptadeScoreBoard = (answer) => async (dispatch, getState) => {
   const { idQuestion } = getState().questionReducer;
   const { difficulty } = getState().questionReducer.questions[idQuestion];
@@ -84,15 +87,18 @@ export const uptadeScoreBoard = (answer) => async (dispatch, getState) => {
     if (difficulty === 'hard') {
       const scoreHard = magicNumber + (getTime * hard);
       dispatch(justPassScore(scoreHard));
+      dispatch(addAssertions());
       return scoreHard;
     } if (difficulty === 'medium') {
       const scoreMedium = magicNumber + (getTime * 2);
       dispatch(justPassScore(scoreMedium));
+      dispatch(addAssertions());
       return scoreMedium;
     }
     if (difficulty === 'easy') {
       const scoreEasy = magicNumber + (getTime * 1);
       dispatch(justPassScore(scoreEasy));
+      dispatch(addAssertions());
       return scoreEasy;
     }
   } else dispatch(justPassScore(0));

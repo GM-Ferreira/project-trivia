@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
 import Header from '../components/Header';
 import FeedBackResult from '../components/FeedBackResult';
 
@@ -16,4 +17,4 @@ class Feedback extends Component {
   }
 }
 
-export default Feedback;
+export default connect()(Feedback);

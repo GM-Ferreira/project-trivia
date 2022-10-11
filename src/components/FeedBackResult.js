@@ -4,11 +4,18 @@ import PropTypes from 'prop-types';
 
 class FeedBackResult extends Component {
   render() {
-    const { score } = this.props;
+    const { score, assertions } = this.props;
+    const correctAnswers = 3;
     return (
       <>
+        <p data-testid="feedback-text">
+          { assertions >= correctAnswers ? 'Well Done!' : 'Could be better...' }
+        </p>
         <p data-testid="feedback-total-score">
           {score}
+        </p>
+        <p data-testid="feedback-total-question">
+          { assertions }
         </p>
       </>
 
@@ -17,11 +24,12 @@ class FeedBackResult extends Component {
 }
 
 FeedBackResult.propTypes = {
-  foto: PropTypes.string,
+  assertions: PropTypes.number,
 }.isRequired;
 
 const mapStateToProps = (state) => ({
   score: state.player.score,
+  assertions: state.player.assertions,
 });
 
 export default connect(mapStateToProps)(FeedBackResult);
