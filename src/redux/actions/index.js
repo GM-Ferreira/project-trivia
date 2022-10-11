@@ -4,7 +4,8 @@ import {
   REQUEST_QUESTION_SUCCESS,
   REQUEST_QUESTION_PROCESS,
   REQUEST_QUESTION_FAIL,
-  LOGIN, TIME_OUT, SELECTED_QUESTION } from './actions';
+  LOGIN, TIME_OUT, SELECTED_QUESTION, COUNT,
+  STOP_TIMER, UPDATE_SCORE } from './actions';
 
 export const questionList = (list) => ({
   type: REQUEST_QUESTION_SUCCESS,
@@ -27,7 +28,6 @@ export const questionRequest = (token) => async (dispatch) => {
     const responseCode = response.response_code;
     if (responseCode === 0) {
       const list = response.results;
-      console.log(list);
       dispatch(questionList(list));
     } else {
       localStorage.clear();
@@ -57,9 +57,7 @@ export const sendPicture = (foto, name) => ({ type: LOGIN, payload: { foto, name
 export const getEmail = (email, name) => async (dispatch) => {
   try {
     const endPoint = `https://www.gravatar.com/avatar/${md5(email).toString()}`;
-    const request = await fetch(endPoint);
     dispatch(sendPicture(endPoint, name));
-    console.log(request);
   } catch (error) {
     console.log(error);
   }
@@ -67,4 +65,39 @@ export const getEmail = (email, name) => async (dispatch) => {
 
 export const disableButtons = () => ({ type: TIME_OUT });
 
-export const updateScoreBoard = (payload) => ({ type: SELECTED_QUESTION, payload });
+export const getTimeOnClick = (payload) => ({ type: SELECTED_QUESTION, payload });
+
+export const justPassScore = (payload) => ({ type: UPDATE_SCORE, payload });
+
+export const stopTimer = (payload) => ({ type: STOP_TIMER, payload });
+
+export const uptadeScoreBoard = (answer) => async (dispatch, getState) => {
+  const { idQuestion } = getState().questionReducer;
+  const { difficulty } = getState().questionReducer.questions[idQuestion];
+  const getTime = getState().questionReducer.time;
+  console.log(getTime);
+  console.log(answer);
+  console.log(difficulty);
+  const magicNumber = 10;
+  const hard = 3;
+  if (answer === 'correct-answer') {
+    if (difficulty === 'hard') {
+      const scoreHard = magicNumber + (getTime * hard);
+      dispatch(justPassScore(scoreHard));
+      return scoreHard;
+    } if (difficulty === 'medium') {
+      const scoreMedium = magicNumber + (getTime * 2);
+      dispatch(justPassScore(scoreMedium));
+      return scoreMedium;
+    }
+    if (difficulty === 'easy') {
+      const scoreEasy = magicNumber + (getTime * 1);
+      dispatch(justPassScore(scoreEasy));
+      return scoreEasy;
+    }
+  } else dispatch(justPassScore(0));
+};
+
+export const nextQuestion = () => ({
+  type: COUNT,
+});

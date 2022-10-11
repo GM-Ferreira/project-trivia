@@ -4,8 +4,7 @@ import PropTypes from 'prop-types';
 
 class Header extends Component {
   render() {
-    const { foto, nome } = this.props;
-    console.log(foto);
+    const { foto, nome, score } = this.props;
     return (
       <>
         <img
@@ -17,7 +16,7 @@ class Header extends Component {
           { nome }
         </h2>
         <p data-testid="header-score">
-          0
+          {score}
         </p>
       </>
     );
@@ -29,8 +28,9 @@ Header.propTypes = {
 }.isRequired;
 
 const mapStateToProps = (state) => ({
-  foto: state.reducerLogin.foto,
-  nome: state.reducerLogin.nome,
+  foto: state.player.foto,
+  nome: state.player.nome,
+  score: state.player.score,
 });
 
 export default connect(mapStateToProps)(Header);

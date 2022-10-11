@@ -11,11 +11,11 @@ class App extends React.Component {
   render() {
     return (
       <Switch>
-        <Route exact path="/" component={ Login } />
-        <Route exact path="/game" component={ Game } />
-        <Route exact path="/feedback" component={ Feedback } />
-        <Route exact path="/ranking" component={ Ranking } />
-        <Route exact path="/settings" component={ Settings } />
+        <Route exact path="/" render={ (props) => <Login { ...props } /> } />
+        <Route exact path="/game" render={ (props) => <Game { ...props } /> } />
+        <Route exact path="/feedback" render={ (props) => <Feedback { ...props } /> } />
+        <Route exact path="/ranking" render={ (props) => <Ranking { ...props } /> } />
+        <Route exact path="/settings" render={ (props) => <Settings { ...props } /> } />
       </Switch>
     );
   }

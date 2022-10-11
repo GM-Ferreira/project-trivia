@@ -1,12 +1,10 @@
-import { LOGIN } from '../actions/actions';
+import { LOGIN, UPDATE_SCORE } from '../actions/actions';
 
 const INITIAL_STATE = {
-  player: {
-    name: '',
-    assertions: '',
-    score: '',
-    gravatarEmail: '',
-  },
+  name: '',
+  assertions: '',
+  score: 0,
+  gravatarEmail: '',
   foto: '',
   nome: '',
 };
@@ -18,6 +16,11 @@ const reducerLogin = (state = INITIAL_STATE, action) => {
       ...state,
       foto: action.payload.foto,
       nome: action.payload.name,
+    };
+  case UPDATE_SCORE:
+    return {
+      ...state,
+      score: state.score + action.payload,
     };
   default:
     return state;
