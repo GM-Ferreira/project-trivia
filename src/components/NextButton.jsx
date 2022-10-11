@@ -1,14 +1,41 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
-import { nextQuestion } from '../redux/actions';
-
-import Timer from './Timer';
+import { nextQuestion, stopTimer, disableButtons } from '../redux/actions';
 
 class NextButton extends React.Component {
+  state = {
+    timer: 30,
+  };
+
+  componentDidMount() {
+    this.cronometro();
+  }
+
+  cronometro = () => {
+    const { dispatch } = this.props;
+
+    this.setState({ timer: 30 }, () => {
+      const second = 1000;
+      const idInterval = setInterval(() => {
+        this.setState((prevState) => ({
+          timer: prevState.timer - 1,
+        }), () => {
+          const { timer } = this.state;
+          if (timer === 0) {
+            dispatch(disableButtons(timer));
+            clearInterval(idInterval);
+          }
+        });
+      }, second);
+      dispatch(stopTimer(idInterval));
+    });
+  };
+
   handleClick = () => {
     const { dispatch, history, idQuestion } = this.props;
     const maxQuestions = 4;
+    this.cronometro();
     if (idQuestion < maxQuestions) {
       dispatch(nextQuestion());
     } else {
@@ -17,6 +44,7 @@ class NextButton extends React.Component {
   };
 
   render() {
+    const { timer } = this.state;
     const { disable } = this.props;
     return (
       <div>
@@ -30,7 +58,12 @@ class NextButton extends React.Component {
             Next
           </button>
         )}
-        <Timer />
+        <p
+          value={ timer }
+          name="temporizador"
+        >
+          { timer }
+        </p>
       </div>
     );
   }
