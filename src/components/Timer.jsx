@@ -1,7 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
-import { disableButtons } from '../redux/actions';
+import { disableButtons, stopTimer } from '../redux/actions';
 
 class Timer extends React.Component {
   state = {
@@ -23,19 +23,22 @@ class Timer extends React.Component {
         }), () => {
           const { timer } = this.state;
           if (timer === 0) {
-            dispatch(disableButtons());
+            dispatch(disableButtons(timer));
             clearInterval(idInterval);
           }
         });
       }, second);
+      dispatch(stopTimer(idInterval));
     });
   };
 
   render() {
     const { timer } = this.state;
-    console.log(timer);
     return (
-      <p>
+      <p
+        value={ timer }
+        name="temporizador"
+      >
         { timer }
       </p>
     );
