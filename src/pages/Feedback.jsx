@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
+import Header from '../components/Header';
 
 class Feedback extends Component {
   moveToRanking = () => {
@@ -14,6 +15,7 @@ class Feedback extends Component {
     return (
       <div data-testid="feedback-text">
         Feedbacks
+        <Header />
         <p data-testid="feedback-text">
           { assertions >= correctAnswers ? 'Well Done!' : 'Could be better...' }
         </p>
