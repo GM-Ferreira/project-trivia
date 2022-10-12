@@ -1,7 +1,9 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
+import './Feedback.css';
 import Header from '../components/Header';
+import FeedBackResult from '../components/FeedBackResult';
 
 class Feedback extends Component {
   moveToRanking = () => {
@@ -9,38 +11,42 @@ class Feedback extends Component {
     history.push('/ranking');
   };
 
-  render() {
-    const { assertions } = this.props;
-    const correctAnswers = 3;
-    return (
-      <div data-testid="feedback-text">
-        Feedbacks
-        <Header />
-        <p data-testid="feedback-text">
-          { assertions >= correctAnswers ? 'Well Done!' : 'Could be better...' }
-        </p>
+  handleClick = () => {
+    const { history } = this.props;
+    history.push('/');
+  };
 
+  render() {
+    return (
+      <div className="feedback" data-testid="feedback-text">
+        <Header />
+        <h1>Feedbacks</h1>
+        <FeedBackResult />
         <button
           type="button"
-          data-testid="btn-ranking"
-          onClick={ this.moveToRanking }
+          data-testid="btn-play-again"
+          onClick={ this.handleClick }
         >
-          Ranking
+          Play Again
         </button>
+        <div>
+          <button
+            type="button"
+            data-testid="btn-ranking"
+            onClick={ this.moveToRanking }
+          >
+            Ranking
+          </button>
+        </div>
       </div>
     );
   }
 }
 
-const mapStateToProps = (state) => ({
-  assertions: state.player.assertions,
-});
+export default connect()(Feedback);
 
 Feedback.propTypes = {
   history: PropTypes.shape({
     push: PropTypes.func.isRequired,
   }).isRequired,
-  assertions: PropTypes.number,
-}.isRequired;
-
-export default connect(mapStateToProps)(Feedback);
+};
