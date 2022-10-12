@@ -2,7 +2,7 @@
   text-align: center;
 }
 
-.feedback button {
+/* .feedback button {
   background-color: #fcc302;
   border: 1px solid #eee;
   border-radius: 6px;
@@ -13,7 +13,7 @@
   text-align: absolute;
   top: 25%;
   width: 350px;
-}
+} */
 
 .feedback p {
   font-size: 18px;

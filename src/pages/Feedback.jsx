@@ -1,12 +1,16 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
+import './Feedback.css';
 import Header from '../components/Header';
 import FeedBackResult from '../components/FeedBackResult';
 
-import './Feedback.css';
-
 class Feedback extends Component {
+  moveToRanking = () => {
+    const { history } = this.props;
+    history.push('/ranking');
+  };
+
   handleClick = () => {
     const { history } = this.props;
     history.push('/');
@@ -17,9 +21,7 @@ class Feedback extends Component {
       <div className="feedback" data-testid="feedback-text">
         <Header />
         <h1>Feedbacks</h1>
-        <div>
-          <FeedBackResult />
-        </div>
+        <FeedBackResult />
         <button
           type="button"
           data-testid="btn-play-again"
@@ -27,6 +29,15 @@ class Feedback extends Component {
         >
           Play Again
         </button>
+        <div>
+          <button
+            type="button"
+            data-testid="btn-ranking"
+            onClick={ this.moveToRanking }
+          >
+            Ranking
+          </button>
+        </div>
       </div>
     );
   }
@@ -35,5 +46,7 @@ class Feedback extends Component {
 export default connect()(Feedback);
 
 Feedback.propTypes = {
-  history: PropTypes.func,
-}.isRequired;
+  history: PropTypes.shape({
+    push: PropTypes.func.isRequired,
+  }).isRequired,
+};
