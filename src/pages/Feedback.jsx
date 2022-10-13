@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import './Feedback.css';
 import Header from '../components/Header';
+import { resetResults } from '../redux/actions';
 import FeedBackResult from '../components/FeedBackResult';
 
 class Feedback extends Component {
@@ -12,7 +13,8 @@ class Feedback extends Component {
   };
 
   handleClick = () => {
-    const { history } = this.props;
+    const { history, dispatch } = this.props;
+    dispatch(resetResults());
     history.push('/');
   };
 
@@ -46,7 +48,8 @@ class Feedback extends Component {
 export default connect()(Feedback);
 
 Feedback.propTypes = {
+  dispatch: PropTypes.func,
   history: PropTypes.shape({
     push: PropTypes.func.isRequired,
   }).isRequired,
-};
+}.isRequired;

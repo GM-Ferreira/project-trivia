@@ -6,7 +6,7 @@ import {
   REQUEST_QUESTION_FAIL,
   LOGIN, TIME_OUT, SELECTED_QUESTION, COUNT,
   STOP_TIMER, UPDATE_SCORE,
-  UPDATE_ASSERTIONS } from './actions';
+  UPDATE_ASSERTIONS, SEND_RANKING, RESET_RESULTS } from './actions';
 
 export const questionList = (list) => ({
   type: REQUEST_QUESTION_SUCCESS,
@@ -31,7 +31,7 @@ export const questionRequest = (token) => async (dispatch) => {
       const list = response.results;
       dispatch(questionList(list));
     } else {
-      localStorage.clear();
+      localStorage.clear('token');
       await dispatch(invalidToken());
       throw new Error('Not Found');
     }
@@ -78,9 +78,9 @@ export const uptadeScoreBoard = (answer) => async (dispatch, getState) => {
   const { idQuestion } = getState().questionReducer;
   const { difficulty } = getState().questionReducer.questions[idQuestion];
   const getTime = getState().questionReducer.time;
-  console.log(getTime);
-  console.log(answer);
-  console.log(difficulty);
+  // console.log(getTime);
+  // console.log(answer);
+  // console.log(difficulty);
   const magicNumber = 10;
   const hard = 3;
   if (answer === 'correct-answer') {
@@ -107,3 +107,20 @@ export const uptadeScoreBoard = (answer) => async (dispatch, getState) => {
 export const nextQuestion = () => ({
   type: COUNT,
 });
+export const sendRank = (payload) => ({
+  type: SEND_RANKING, payload,
+});
+
+export function playerScore() {
+  return async (dispatch, getState) => {
+    const { name, foto, score } = getState().player;
+    const player = { nome: name, ft: foto, pontos: score };
+    const arrayRanking = JSON.parse(localStorage.getItem('player')) || [];
+    const newRanking = [...arrayRanking, player];
+    console.log(newRanking);
+    dispatch(sendRank(newRanking));
+    localStorage.setItem('player', JSON.stringify(newRanking));
+  };
+}
+
+export const resetResults = () => ({ type: RESET_RESULTS });

@@ -2,7 +2,7 @@ import {
   REQUEST_QUESTION_SUCCESS,
   REQUEST_QUESTION_PROCESS,
   REQUEST_QUESTION_FAIL, TIME_OUT, SELECTED_QUESTION,
-  STOP_TIMER, COUNT } from '../actions/actions';
+  STOP_TIMER, COUNT, RESET_RESULTS } from '../actions/actions';
 
 const INITIAL_STATE = {
   questions: [],
@@ -33,7 +33,7 @@ const questionReducer = (state = INITIAL_STATE, action) => {
   case TIME_OUT:
     return {
       ...state,
-      disable: !state.disable,
+      disable: true,
     };
   case SELECTED_QUESTION:
     return {
@@ -51,6 +51,16 @@ const questionReducer = (state = INITIAL_STATE, action) => {
       ...state,
       disable: false,
       idQuestion: state.idQuestion + 1,
+    };
+  case RESET_RESULTS:
+    return {
+      questions: [],
+      disable: false,
+      time: 0,
+      isLoading: true,
+      isValid: true,
+      idQuestion: 0,
+      idTimer: 0,
     };
   default:
     return state;

@@ -1,7 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
-import { nextQuestion, stopTimer, disableButtons } from '../redux/actions';
+import { nextQuestion, stopTimer, disableButtons, playerScore } from '../redux/actions';
 
 class NextButton extends React.Component {
   state = {
@@ -40,6 +40,7 @@ class NextButton extends React.Component {
       dispatch(nextQuestion());
     } else {
       history.push('/feedback');
+      dispatch(playerScore());
     }
   };
 

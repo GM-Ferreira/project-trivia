@@ -8,3 +8,5 @@ export const STOP_TIMER = 'STOP_TIMER';
 export const COUNT = 'COUNT';
 export const UPDATE_SCORE = 'UPDATE_SCORE';
 export const UPDATE_ASSERTIONS = 'UPDATE_ASSERTIONS;';
+export const SEND_RANKING = 'SEND_RANKING';
+export const RESET_RESULTS = 'RESET_RESULTS';
