@@ -4,9 +4,7 @@ const INITIAL_STATE = {
   name: '',
   assertions: 0,
   score: 0,
-  gravatarEmail: '',
   foto: '',
-  nome: '',
 };
 
 const reducerLogin = (state = INITIAL_STATE, action) => {
@@ -15,7 +13,7 @@ const reducerLogin = (state = INITIAL_STATE, action) => {
     return {
       ...state,
       foto: action.payload.foto,
-      nome: action.payload.name,
+      name: action.payload.name,
     };
   case UPDATE_SCORE:
     return {

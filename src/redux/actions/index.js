@@ -107,3 +107,13 @@ export const uptadeScoreBoard = (answer) => async (dispatch, getState) => {
 export const nextQuestion = () => ({
   type: COUNT,
 });
+
+export function playerScore() {
+  return async (dispatch, getState) => {
+    const { name, foto, score } = getState().player;
+    const player = { nome: name, ft: foto, pontos: score };
+    localStorage.setItem('players', [JSON.stringify(player)]);
+    console.log(player);
+
+  };
+}

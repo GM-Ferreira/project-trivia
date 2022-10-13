@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
 
 class Ranking extends Component {
   render() {
@@ -10,4 +11,8 @@ class Ranking extends Component {
   }
 }
 
-export default Ranking;
+// const mapStateToProps = (state) => ({
+//   state: state.login
+// });
+
+export default connect()(Ranking);
