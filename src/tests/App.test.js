@@ -1,9 +1,9 @@
 import React from 'react';
 import { screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
-import renderWithRouterAndRedux from './renderWithRouterAndRedux';
+import renderWithRouterAndRedux from './helpers/renderWithRouterAndRedux';
 
-import App from '../../App';
+import App from '../App';
 
 describe('Testando página de Login', () => {
     it('Imput de nome aparece na tela', () => {
