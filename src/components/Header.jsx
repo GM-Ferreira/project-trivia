@@ -29,7 +29,7 @@ Header.propTypes = {
 
 const mapStateToProps = (state) => ({
   foto: state.player.foto,
-  nome: state.player.nome,
+  nome: state.player.name,
   score: state.player.score,
 });
 
