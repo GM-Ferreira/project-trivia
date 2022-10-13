@@ -39,7 +39,7 @@ class Question extends Component {
         [`wrong-answer${i}`]: e,
       }
     ));
-    const qstObjCorrect = { 'correct-answer': questions[0].correct_answer };
+    const qstObjCorrect = { 'correct-answer': questions[idQuestion].correct_answer };
     const finalObjt = [...qstObj, qstObjCorrect];
     const shuffledQuestions = finalObjt.sort(() => Math.random() - minValue);
     return (
