@@ -1,15 +1,19 @@
-import React from "react";
-import { screen, waitForElementToBeRemoved, render } from "@testing-library/react";
-import userEvent from "@testing-library/user-event";
-import { renderWithRouterAndRedux } from "./helpers/renderWithRouterAndRedux";
-import App from "../App";
-import Feedback from "../pages/Feedback";
+import React from 'react';
+import {
+  screen,
+  waitForElementToBeRemoved,
+  render,
+} from '@testing-library/react';
+import userEvent from '@testing-library/user-event';
+import { renderWithRouterAndRedux } from './helpers/renderWithRouterAndRedux';
+import App from '../App';
+import Feedback from '../pages/Feedback';
 
 describe('Testando a página de Feedbacks', () => {
   it('Aparece a imagem do email pelo gravatar na tela', () => {
     renderWithRouterAndRedux(<Feedback />);
 
-    const imageGravatar = screen.getByRole('img', {  name: /minha foto/i});
+    const imageGravatar = screen.getByRole('img', { name: /minha foto/i });
     expect(imageGravatar).toBeInTheDocument();
   });
 
@@ -23,7 +27,7 @@ describe('Testando a página de Feedbacks', () => {
   it('Aparece o título de Feedback na tela', () => {
     renderWithRouterAndRedux(<Feedback />);
 
-    const feedback = screen.getByRole('heading', {  name: /feedbacks/i});
+    const feedback = screen.getByRole('heading', { name: /feedbacks/i });
 
     expect(feedback).toBeInTheDocument();
   });
@@ -31,14 +35,14 @@ describe('Testando a página de Feedbacks', () => {
   it('Aparece o botão de Play again na tela', () => {
     renderWithRouterAndRedux(<Feedback />);
 
-    const btnPlayAgain = screen.getByRole('button', {  name: /play again/i});
+    const btnPlayAgain = screen.getByRole('button', { name: /play again/i });
     expect(btnPlayAgain).toBeInTheDocument();
   });
 
   it('Aparece o botão de Ranking na tela e leva para page "ranking"', () => {
     const { history } = renderWithRouterAndRedux(<App />, {}, '/feedback');
 
-    const btnRanking = screen.getByRole('button', {  name: /ranking/i});
+    const btnRanking = screen.getByRole('button', { name: /ranking/i });
     expect(btnRanking).toBeInTheDocument();
 
     userEvent.click(btnRanking);
@@ -49,7 +53,7 @@ describe('Testando a página de Feedbacks', () => {
   it('Aparece o botão de Play Again na tela e leva para page "login"', () => {
     const { history } = renderWithRouterAndRedux(<App />, {}, '/feedback');
 
-    const btnPlayAgain = screen.getByRole('button', {  name: /play again/i});
+    const btnPlayAgain = screen.getByRole('button', { name: /play again/i });
     expect(btnPlayAgain).toBeInTheDocument();
 
     userEvent.click(btnPlayAgain);
@@ -62,20 +66,20 @@ describe('Testando a página de Feedbacks', () => {
 
   //   const btnRanking = screen.getByRole('button', {  name: /ranking/i});
   //   userEvent.click(btnRanking);
-  
+
   //   waitForElementToBeRemoved (btnRanking).then(() => {
   //     expect(btnRanking).not.toBeInTheDocument();
   //   });
   // }, 10000);
 
-//   it('O botão de Play Again leva para page "/"', () => {
-//     renderWithRouterAndRedux(<Feedback />);
-//     const btnPlayAgain = screen.getByRole('button', {  name: /play again/i});
+  //   it('O botão de Play Again leva para page "/"', () => {
+  //     renderWithRouterAndRedux(<Feedback />);
+  //     const btnPlayAgain = screen.getByRole('button', {  name: /play again/i});
 
-//     userEvent.click(btnPlayAgain);
+  //     userEvent.click(btnPlayAgain);
 
-//     const textLogin = screen.getByRole('heading', {  name: /login/i})
-//     expect(textLogin).toBeInTheDocument();
+  //     const textLogin = screen.getByRole('heading', {  name: /login/i})
+  //     expect(textLogin).toBeInTheDocument();
 
-//   });
+  //   });
 });
