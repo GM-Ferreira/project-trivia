@@ -30,12 +30,20 @@ class Ranking extends Component {
           ranking.sort((a, b) => b.pontos - a.pontos).map((e, i) => (
             <div key={ i }>
               <img src={ e.ft } alt="Minha foto" />
-              <p data-testid={ `player-name-${i}` }>
-                {`User: ${e.nome}`}
-              </p>
-              <p data-testid={ `player-score-${i}` }>
-                {`Score: ${e.pontos}`}
-              </p>
+              <br />
+              <span>
+                User:
+              </span>
+              <span data-testid={ `player-name-${i}` }>
+                {e.nome}
+              </span>
+              <br />
+              <span>
+                Score:
+              </span>
+              <span data-testid={ `player-score-${i}` }>
+                {e.pontos}
+              </span>
             </div>
           ))
         }

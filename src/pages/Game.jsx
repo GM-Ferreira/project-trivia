@@ -14,6 +14,7 @@ class Game extends Component {
         <Header />
         { !isValid && <Redirect to="/" /> }
         <p>Game</p>
+        <br />
         {loading ? (<p>Carregando...</p>)
           : <Question history={ history } />}
       </div>

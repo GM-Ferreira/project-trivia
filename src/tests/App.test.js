@@ -6,73 +6,72 @@ import renderWithRouterAndRedux from './helpers/renderWithRouterAndRedux';
 import App from '../App';
 
 describe('Testando página de Login', () => {
-    it('Imput de nome aparece na tela', () => {
-        renderWithRouterAndRedux(<App />);
+  it('Imput de nome aparece na tela', () => {
+    renderWithRouterAndRedux(<App />);
 
-        const inputName = screen.getByRole('textbox', {  name: /nome/i});
+    const inputName = screen.getByRole('textbox', { name: /nome/i });
 
-        expect(inputName).toBeInTheDocument();
-    });
+    expect(inputName).toBeInTheDocument();
+  });
 
-    it('Imput de nome e email é digitavel', async () => {
-        renderWithRouterAndRedux(<App />);
+  it('Imput de nome e email é digitavel', async () => {
+    renderWithRouterAndRedux(<App />);
 
-        const inputName = screen.getByRole('textbox', {  name: /nome/i});
+    const inputName = screen.getByRole('textbox', { name: /nome/i });
 
-        const inputEmail = screen.getByRole('textbox', {  name: /email/i});
+    const inputEmail = screen.getByRole('textbox', { name: /email/i });
 
-        userEvent.type(inputName, 'nome teste');
-        userEvent.type(inputEmail, 'email teste');
-        
-        expect(inputName.value).toBe('nome teste');
-        expect(inputEmail.value).toBe('emailteste');
-        
-    });
+    userEvent.type(inputName, 'nome teste');
+    userEvent.type(inputEmail, 'email teste');
 
-    it('Imput de email aparece na tela', () => {
-        renderWithRouterAndRedux(<App />);
+    expect(inputName.value).toBe('nome teste');
+    expect(inputEmail.value).toBe('emailteste');
+  });
 
-        const inputEmail = screen.getByRole('textbox', {  name: /email/i});
+  it('Imput de email aparece na tela', () => {
+    renderWithRouterAndRedux(<App />);
 
-        expect(inputEmail).toBeInTheDocument();
-    });
+    const inputEmail = screen.getByRole('textbox', { name: /email/i });
 
-    it('Button de play aparece na tela', () => {
-        renderWithRouterAndRedux(<App />);
+    expect(inputEmail).toBeInTheDocument();
+  });
 
-        const btnPaly = screen.getByRole('button', {  name: /play/i});
+  it('Button de play aparece na tela', () => {
+    renderWithRouterAndRedux(<App />);
 
-        expect(btnPaly).toBeInTheDocument();
-    });
+    const btnPaly = screen.getByRole('button', { name: /play/i });
 
-    it('Button de settings aparece na tela e funciona', () => {
-        renderWithRouterAndRedux(<App />);
+    expect(btnPaly).toBeInTheDocument();
+  });
 
-        const btnSettings = screen.getByRole('button', {  name: /settings/i});
+  it('Button de settings aparece na tela e funciona', () => {
+    renderWithRouterAndRedux(<App />);
 
-        expect(btnSettings).toBeInTheDocument();
+    const btnSettings = screen.getByRole('button', { name: /settings/i });
 
-        userEvent.click(btnSettings);
-        const settingText = screen.getByText(/settings/i);
+    expect(btnSettings).toBeInTheDocument();
 
-        expect(settingText).toBeInTheDocument();
-    })
+    userEvent.click(btnSettings);
+    const settingText = screen.getByText(/settings/i);
 
-    it('botão play libera quando digita email e nome', () => {
-      renderWithRouterAndRedux(<App />);
+    expect(settingText).toBeInTheDocument();
+  });
 
-      const inputName = screen.getByRole('textbox', {  name: /nome/i});
-      const inputEmail = screen.getByRole('textbox', {  name: /email/i});
+  it('botão play libera quando digita email e nome', () => {
+    renderWithRouterAndRedux(<App />);
 
-      userEvent.type(inputName, 'nome teste');
-      userEvent.type(inputEmail, 'email teste');
+    const inputName = screen.getByRole('textbox', { name: /nome/i });
+    const inputEmail = screen.getByRole('textbox', { name: /email/i });
 
-      const btnPaly = screen.getByRole('button', {  name: /play/i});
+    userEvent.type(inputName, 'nome teste');
+    userEvent.type(inputEmail, 'email teste');
 
-      userEvent.click(btnPaly);
+    const btnPaly = screen.getByRole('button', { name: /play/i });
 
-      const gameText = screen.getByText(/game/i);
+    userEvent.click(btnPaly);
 
-      expect(gameText).toBeInTheDocument();
-  })
-})
+    const gameText = screen.getByText(/game/i);
+
+    expect(gameText).toBeInTheDocument();
+  });
+});
