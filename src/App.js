@@ -13,9 +13,21 @@ class App extends React.Component {
       <Switch>
         <Route exact path="/" render={ (props) => <Login { ...props } /> } />
         <Route exact path="/game" render={ (props) => <Game { ...props } /> } />
-        <Route exact path="/feedback" render={ (props) => <Feedback { ...props } /> } />
-        <Route exact path="/ranking" render={ (props) => <Ranking { ...props } /> } />
-        <Route exact path="/settings" render={ (props) => <Settings { ...props } /> } />
+        <Route
+          exact
+          path="/feedback"
+          render={ (props) => <Feedback { ...props } /> }
+        />
+        <Route
+          exact
+          path="/ranking"
+          render={ (props) => <Ranking { ...props } /> }
+        />
+        <Route
+          exact
+          path="/settings"
+          render={ (props) => <Settings { ...props } /> }
+        />
       </Switch>
     );
   }

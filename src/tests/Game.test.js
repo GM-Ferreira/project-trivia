@@ -84,9 +84,6 @@ describe('Testando página de Game', () => {
     //     expect(question).toBeInTheDocument();
     //   }
     // );
-
-    //afterEach(() => jest.clearAllMocks());
-    // beforeEach(cleanup);
   });
 
   it('Perguntas naõ aparecem na tela com token inválido', async () => {

@@ -1,12 +1,11 @@
-import React from "react";
-import {screen} from "@testing-library/react";
-import userEvent from "@testing-library/user-event";
+import React from 'react';
+import { screen } from '@testing-library/react';
+import userEvent from '@testing-library/user-event';
 
-import renderWithRouterAndRedux from "./helpers/renderWithRouterAndRedux";
-import App from "../App";
+import renderWithRouterAndRedux from './helpers/renderWithRouterAndRedux';
+import App from '../App';
 
 describe('Verificar a renderização da pagina de Ranking', () => {
-
   it('Botão Home deverar redirecionar para a tela inicial', () => {
     const { history } = renderWithRouterAndRedux(<App />, {}, '/ranking');
 
@@ -16,7 +15,6 @@ describe('Verificar a renderização da pagina de Ranking', () => {
     userEvent.click(buttonHome);
     const { pathname } = history.location;
     expect(pathname).toBe('/');
-
   });
 
   it('Devera ter renderizado na tela o título "Ranking', () => {
@@ -46,9 +44,9 @@ describe('Verificar a renderização da pagina de Ranking', () => {
             nome: 'lucas',
             ft: 'https://www.gravatar.com/avatar/132be2fde1c8ffcf198f54926c2768fb',
             pontos: 111,
-          }
-        ]
-      }
+          },
+        ],
+      },
     };
 
     renderWithRouterAndRedux(<App />, players, '/ranking');
@@ -63,7 +61,5 @@ describe('Verificar a renderização da pagina de Ranking', () => {
 
     const namePlayerTwo = screen.getByTestId('player-name-1');
     expect(namePlayerTwo).toBeInTheDocument();
-
   });
 });
-
