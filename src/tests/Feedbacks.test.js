@@ -61,17 +61,6 @@ describe('Testando a página de Feedbacks', () => {
     expect(pathname).toBe('/');
   });
 
-  // it('O botão de ranking leva para page "ranking"', async () => {
-  //   const history = renderWithRouterAndRedux(<Feedback />);
-
-  //   const btnRanking = screen.getByRole('button', {  name: /ranking/i});
-  //   userEvent.click(btnRanking);
-
-  //   waitForElementToBeRemoved (btnRanking).then(() => {
-  //     expect(btnRanking).not.toBeInTheDocument();
-  //   });
-  // }, 10000);
-
   //   it('O botão de Play Again leva para page "/"', () => {
   //     renderWithRouterAndRedux(<Feedback />);
   //     const btnPlayAgain = screen.getByRole('button', {  name: /play again/i});
