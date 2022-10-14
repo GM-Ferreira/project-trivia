@@ -47,7 +47,7 @@ describe('Testando perguntas da page Question', () => {
       () => screen.queryByText(/Carregando.../i),
       { timeout: 4000 }
     );
-    const wrongAnswer = await screen.findByTestId('wrong-answer1');
+    const wrongAnswer = await screen.findByTestId('wrong-answer0');
 
     userEvent.click(wrongAnswer);
   });
