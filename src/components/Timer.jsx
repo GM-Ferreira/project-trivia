@@ -36,6 +36,7 @@ class Timer extends React.Component {
     const { timer } = this.state;
     return (
       <p
+        data-testid="timer"
         value={ timer }
         name="temporizador"
       >

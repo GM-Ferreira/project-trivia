@@ -24,15 +24,17 @@ class Ranking extends Component {
         >
           Home
         </button>
+        <br />
+        <br />
         {
           ranking.sort((a, b) => b.pontos - a.pontos).map((e, i) => (
             <div key={ i }>
               <img src={ e.ft } alt="Minha foto" />
               <p data-testid={ `player-name-${i}` }>
-                { e.nome }
+                {`User: ${e.nome}`}
               </p>
               <p data-testid={ `player-score-${i}` }>
-                { e.pontos }
+                {`Score: ${e.pontos}`}
               </p>
             </div>
           ))
